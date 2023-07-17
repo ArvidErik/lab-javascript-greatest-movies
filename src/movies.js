@@ -25,6 +25,13 @@ const data = [
         director: 'Francis Ford Coppola',
         duration: '3h 22min',
         genre: ['Crime', 'Drama'],
+    },
+    {
+        title: 'She Godfather: Part II',
+        year: 1974,
+        director: 'Francis Ford Coppola',
+        duration: '3h 22min',
+        genre: ['Crime', 'Drama'],
     }
 ]
 
@@ -112,7 +119,15 @@ function orderByYear(moviesArray) {
     const sortedArr = newArr.sort((a, b) => {
         return a.year - b.year;
     })
-    return sortedArr;
+    for (let i = 0 ; i <= sortedArr.length -1; i++) {
+        console.log(sortedArr[i+1].title);
+        if (sortedArr[i+1].year === sortedArr[i].year) {
+            if (sortedArr[i+1].year.localCompare(sortedArr[i].year === 1)) {
+                sortedArr[i] = sortedArr[i+1];
+            }
+        }
+        return sortedArr;
+    };
 }
 console.log(orderByYear(data));
 
@@ -121,21 +136,23 @@ function orderAlphabetically(moviesArray) {
     const newArr = moviesArray.map((element) => {
         return element;
     });
-    const alphaOrder = newArr.sort((a, b) => {
-        return a.title - b.title;
+    
+    const titleArray = newArr.map((element)=>{
+        return element.title;
     });
 
-    const first20 = [];
+    const alphaOrder = titleArray.sort()
+    
+    console.log(alphaOrder);
 
-    // for (let i = 0; i <= 20; i++) {
-    //     let title = alphaOrder[i].alphaOrder.title
-    //     first20.push(title);
-    // }
-    // return first20
+    if (alphaOrder.length < 20) return alphaOrder;
+    else alphaOrder.splice(20);
+
+    return alphaOrder;
 }
 
 
-orderAlphabetically(data);
+// console.log(orderAlphabetically(data));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) { }
