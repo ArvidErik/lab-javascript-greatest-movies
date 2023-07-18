@@ -58,16 +58,13 @@ function scoresAverage(moviesArray) {
     if (moviesArray.length === 0) return 0;
 
     let scoreArray = moviesArray.map((element) => {
+        if (element.score === undefined || element.score === "" || element.score === {}) {
+            return element.score = 0
+        } else {
         return element.score;
+        }
     });
-    // console.log(scoreArray);
-
-    // clean: remove undefined
-    // let cleanedScoreArray = scoreArray.filter((element) => {
-    //     return element !== undefined;
-    // })
-    // console.log(cleanedScoreArray);
-
+    
     let sumOfScores = scoreArray.reduce((acc, element) => {
         return acc + element;
     });
@@ -113,10 +110,12 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
+    if (moviesArray.length === 0) return []
+
     const newArr = moviesArray.map((element) => {
         return element;
     })
-    const sortedArr = newArr.sort((a, b) => {
+    let sortedArr = newArr.sort((a, b) => {
         return a.year - b.year;
     })
     for (let i = 0 ; i <= sortedArr.length -1; i++) {
